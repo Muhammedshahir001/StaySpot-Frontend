@@ -83,7 +83,7 @@ const StaffReg = () => {
       >
         <div
           style={{ margin: "5vw 13vw" }}
-          className="absolute flex flex-col md:w-3/4 py-12 md:flex-row items-center  bg-white bg-opacity-60 rounded-3xl"
+          className="absolute flex flex-col md:w-3/4 py-12 md:flex-row items-center  bg-white bg-opacity-80 rounded-3xl"
         >
           <div className=" w-1/2 pl-24 rounded-lg">
             <h1 className="text-2xl font-bold text-blue-800 mb-7">

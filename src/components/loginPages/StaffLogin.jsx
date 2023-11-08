@@ -146,7 +146,13 @@ const StaffLogin = () => {
             Signup here
           </Link>
         </p>
-     
+        <p className="font-bold text-black mt-4">
+          User Login? {" "}
+          <Link className="text-blue-800" to="/login">
+            Login
+          </Link>
+        </p>
+
         <ToastContainer />
       </div>
     </div>

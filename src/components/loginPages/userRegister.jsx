@@ -59,7 +59,9 @@ const UserRegister = () => {
         }
       } catch (error) {
         console.log("Error during registration:", error);
-        generateError("Sorry the email or password is already taken please provide another one !!!");
+        generateError(
+          "Sorry the email or password is already taken please provide another one !!!"
+        );
       }
     }
   };
@@ -76,7 +78,7 @@ const UserRegister = () => {
       >
         <div
           style={{ margin: "5vw 13vw" }}
-          className="absolute flex flex-col md:w-3/4 py-12 md:flex-row items-center  bg-white bg-opacity-60 rounded-3xl"
+          className="absolute flex flex-col md:w-3/4 py-12 md:flex-row items-center  bg-slate-50 bg-opacity-80 rounded-3xl"
         >
           <div className=" w-1/2 pl-24 rounded-lg">
             <h1 className="text-2xl font-bold text-blue-800 mb-7">SignUp</h1>
@@ -139,7 +141,7 @@ const UserRegister = () => {
               <img
                 className="rounded-lg  md:ml-5  w-2/3"
                 src={
-                  "https://www.backpackers.cloud/static/media/man_walking.b7266244.png"
+                  "https://res.cloudinary.com/dqlhedl48/image/upload/v1699419199/oqpmqhvxuzz3jvzw2s2x.png"
                 }
                 alt=""
               />
