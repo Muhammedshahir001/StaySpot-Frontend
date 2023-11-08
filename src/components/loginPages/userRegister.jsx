@@ -23,10 +23,16 @@ const UserRegister = () => {
       position: "top-center",
     });
   };
+    const handlePhoneInputChange = (e) => {
+      // Ensure that only numeric characters are allowed
+      const inputValue = e.target.value.replace(/[^0-9]/g, "");
+      setphone(inputValue);
+    };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}$/;
+     const phoneRegex = /^\d{10}$/;
 
     if (name === "" || email === "" || phone === "" || password === "") {
       generateError("Please fill all the required fields");
@@ -34,6 +40,8 @@ const UserRegister = () => {
       generateError("Please enter a strong password");
     } else if (password !== repassword) {
       generateError("Passwords do not match. Please try again.");
+    } else if (!phoneRegex.test(phone)) {
+      generateError("Please enter a 10-digit phone number.");
     } else {
       try {
         const data = await userregister({
@@ -55,7 +63,7 @@ const UserRegister = () => {
             );
           }
         } else {
-          generateSuccess("Account activated, check your email");
+          generateSuccess("Your verification Link sented , check your email now!!");
         }
       } catch (error) {
         console.log("Error during registration:", error);
@@ -102,8 +110,9 @@ const UserRegister = () => {
                 className="h-10 max-w-sm  text-blue-700 mt-1 bg-transparent border-[3px] border-blue-900 rounded-sm pl-5"
                 type="text"
                 name="phone_number"
+                value={phone}
                 placeholder="Phone"
-                onChange={(e) => setphone(e.target.value)}
+                onChange={handlePhoneInputChange}
               />
               <input
                 className="h-10 max-w-sm  text-blue-700 mt-1 bg-transparent border-[3px] border-blue-900 rounded-sm pl-5"

@@ -23,10 +23,16 @@ const StaffReg = () => {
       position: "top-center",
     });
   };
+    const handlePhoneInputChange = (e) => {
+      // Ensure that only numeric characters are allowed
+      const inputValue = e.target.value.replace(/[^0-9]/g, "");
+      setstaffphone(inputValue);
+    };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}$/;
+    const phoneRegex = /^\d{10}$/;
 
     if (
       staffname === "" ||
@@ -39,6 +45,8 @@ const StaffReg = () => {
       generateError("Please enter a strong password");
     } else if (staffpassword !== staffrepassword) {
       generateError("Passwords do not match. Please try again.");
+    } else if (!phoneRegex.test(staffphone)) {
+      generateError("Please enter a 10-digit phone number.");
     } else {
       try {
         const data = await staffregister({
@@ -110,8 +118,9 @@ const StaffReg = () => {
                 className="h-10 max-w-sm  text-blue-700 mt-1 bg-transparent border-[3px] border-blue-900 rounded-sm pl-5"
                 type="text"
                 name="phone_number"
+                value={staffphone}
                 placeholder="Phone"
-                onChange={(e) => setstaffphone(e.target.value)}
+                onChange={handlePhoneInputChange}
               />
               <input
                 className="h-10 max-w-sm  text-blue-700 mt-1 bg-transparent border-[3px] border-blue-900 rounded-sm pl-5"
