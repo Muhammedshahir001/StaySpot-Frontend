@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { getUser, getMessages, adMessage } from "../../api/userApi";
 import InputEmoji from "react-input-emoji";
 import { FiSend } from "react-icons/fi";
-import chatbg from "../../images/output-onlinegiftools.gif";
 
 const Chatbox = ({ chat, currentUser, setSendMessage, recievedMessage }) => {
   const [userData, setUserData] = useState(null);
