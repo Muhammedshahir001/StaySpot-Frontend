@@ -86,7 +86,7 @@ const StaffReg = () => {
         className="w-full bg-cover bg-center items-center"
         style={{
           backgroundImage:
-            'url("https://www.backpackers.cloud/static/media/tryregister.274b8bf0.jpg")',
+            'url("https://res.cloudinary.com/dqlhedl48/image/upload/v1699817055/upxv3n9iffeygjyrp4kz.jpg")',
         }}
       >
         <div

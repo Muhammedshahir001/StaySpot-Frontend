@@ -1,27 +1,49 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FaUser } from "react-icons/fa";
 import { TbHome2 } from "react-icons/tb";
 import { LuHotel } from "react-icons/lu";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { FaPersonWalkingLuggage } from "react-icons/fa6";
 import { DiYii } from "react-icons/di";
+import { setUserDetails } from "../../../redux/userSlice";
 
 const Header = () => {
   const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [token, setToken] = useState(null);
-  
+
 
   const handleLogout = () => {
     localStorage.removeItem("usertoken");
+    dispatch(
+      setUserDetails({
+        name: null,
+        _id: null,
+        email: null,
+        phone: null,
+      })
+    );
     setToken(null);
+    localStorage.removeItem("user");
+    // localStorage.removeItem("token");
+    localStorage.removeItem("isLoggedIn");
     navigate("/login");
   };
 
+    useEffect(() => {
+      const userFromLocalStorage = JSON.parse(localStorage.getItem("user"));
+      const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+      if (isLoggedIn && userFromLocalStorage) {
+        dispatch(setUserDetails(userFromLocalStorage));
+      }
+    }, [dispatch]);
+
   useEffect(() => {
-    const token = localStorage.getItem("usertoken");
+    const token = localStorage.getItem("user");
     if (token) {
       setToken(token);
     }
@@ -77,28 +99,40 @@ const Header = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 text-white text-xl ">
           <li>
-            <Link className="hover:text-blue-300 hover:animate-pulse hover:font-semibold " to="/">
+            <Link
+              className="hover:text-blue-300 hover:animate-pulse hover:font-semibold "
+              to="/"
+            >
               {" "}
               <TbHome2 />
               Home
             </Link>
           </li>
           <li>
-            <Link  className="hover:text-blue-300 hover:animate-pulse hover:font-semibold" to="/resortList">
+            <Link
+              className="hover:text-blue-300 hover:animate-pulse hover:font-semibold"
+              to="/resortList"
+            >
               {" "}
               <LuHotel />
               Resort
             </Link>
           </li>
           <li>
-            <Link  className="hover:text-blue-300 hover:animate-pulse hover:font-semibold" to="/adventure">
+            <Link
+              className="hover:text-blue-300 hover:animate-pulse hover:font-semibold"
+              to="/adventure"
+            >
               {" "}
               <FaPersonWalkingLuggage />
               Adventure
             </Link>
           </li>
           <li>
-            <Link  className="hover:text-blue-300 hover:animate-pulse hover:font-semibold" to="/destinations">
+            <Link
+              className="hover:text-blue-300 hover:animate-pulse hover:font-semibold"
+              to="/destinations"
+            >
               {" "}
               <FaMapMarkerAlt />
               Destinations

@@ -12,28 +12,30 @@ const AddDestination = () => {
   const [resort, setResort] = useState("");
   const [dest_image, setDest_image] = useState([]);
   const [list, setList] = useState([]);
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   useEffect(() => {
     getresortData();
   }, []);
 
-   const handleSuccess = () => {
-     alert("Destination added successfully!");
-     navigate("/staff/staffDestination");
-   };
+  const handleSuccess = () => {
+    toast.success("Destination added successfully!", {
+      position: "top-center",
+      autoClose: 3000,
+    });
+  };
+  const redirectToDestination = () => {
+    navigate("/staff/staffDestination");
+  };
 
-   const handleError = (message) => {
-     alert(`An error occurred while adding the resort: ${message}`);
-   };
+  const handleError = (message) => {
+    alert(`An error occurred while adding the resort: ${message}`);
+  };
   const getresortData = async () => {
     try {
       let { data } = await getResortData();
-     
 
       if (data.success) {
-        
         setList(data.result);
-       
       }
     } catch (error) {
       console.log(error);
@@ -66,17 +68,14 @@ const AddDestination = () => {
       const response = await AddDes(formData);
       console.log(response);
       if (response.data.created) {
-        // toast.success(response.data.message, {
-        //   position: "top-center",
-        // });
-         handleSuccess();
-      }else{
+        handleSuccess();
+        setTimeout(redirectToDestination, 2000);
+      } else {
         handleError("Unexpected response from the server.");
-
       }
     } catch (error) {
-     console.error("Error adding Destination :", error);
-     handleError("An error occurred while adding the Destination.");
+      console.error("Error adding Destination :", error);
+      handleError("An error occurred while adding the Destination.");
     }
   };
 

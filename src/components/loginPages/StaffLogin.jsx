@@ -8,11 +8,9 @@ import { setStaffDetails } from "../../redux/staffSlice";
 import { stafflogin } from "../../api/Staffapi";
 
 const StaffLogin = () => {
- 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [errors, setError] = useState("");
   const [staffemail, setstaffemail] = useState("");
   const [staffpass, setstaffpass] = useState("");
   useEffect(() => {
@@ -41,7 +39,6 @@ const StaffLogin = () => {
       return;
     }
     try {
-
       const data = await stafflogin({
         email: staffemail,
         password: staffpass,
@@ -64,7 +61,7 @@ const StaffLogin = () => {
               token: data.data.staff.token,
             })
           );
-         
+
           if (data.data.staff.verified) {
             console.log("stafffff");
 
@@ -147,7 +144,7 @@ const StaffLogin = () => {
           </Link>
         </p>
         <p className="font-bold text-black mt-4">
-          User Login? {" "}
+          User Login?{" "}
           <Link className="text-blue-800" to="/login">
             Login
           </Link>

@@ -12,7 +12,7 @@ import {
   BarElement,
   Title,
 } from "chart.js";
-import { Pie } from "react-chartjs-2";
+import { Bar, Pie } from "react-chartjs-2";
 ChartJS.register(
   ArcElement,
   Tooltip,
@@ -27,6 +27,9 @@ const AdminHomes = () => {
   const [rejected, setRejected] = useState([]);
   const [allbooking, setAllbooking] = useState([]);
   const [cancelbook, setCancelbook] = useState("");
+     const [onlinePaymentTotal, setOnlinePaymentTotal] = useState(0);
+     const [codPaymentTotal, setCodPaymentTotal] = useState(0);
+
   const resorts = {
     labels: ["Approved_Resorts", "Rejected_Resorts"],
     datasets: [
@@ -51,6 +54,23 @@ const AdminHomes = () => {
       },
     ],
   };
+     const getChartData = () => {
+       return {
+         labels: ["Online Payment", "Cash on CheckIn"],
+         datasets: [
+           {
+             label: "Total Payments",
+             data: [onlinePaymentTotal, codPaymentTotal],
+             backgroundColor: [
+               "rgba(54, 162, 235, 0.6)",
+               "rgba(255, 99, 132, 0.6)",
+             ],
+             borderColor: ["rgba(54, 162, 235, 1)", "rgba(255, 99, 132, 1)"],
+             borderWidth: 1,
+           },
+         ],
+       };
+     };
   useEffect(() => {
     getAllBooking();
   });
@@ -62,14 +82,32 @@ const AdminHomes = () => {
       let confirmBooking = data.result.filter(
         (book) => book.status === "booked"
       );
-      console.log(confirmBooking, "booked");
       setAllbooking(confirmBooking.length);
       let cancelbooking = data.result.filter(
         (book) => book.status === "cancelled"
       );
       setCancelbook(cancelbooking.length);
+           const onlinePayments = data.result.filter(
+             (booking) => booking.payment.payment_method === "online"
+           );
+           const codPayments = data.result.filter(
+             (booking) => booking.payment.payment_method === "cod"
+           );
+
+           // Calculate total payments for each method
+           const calculateTotal = (payments) =>
+             payments.reduce(
+               (total, booking) =>
+                 total + (booking.payment.payment_amount || 0),
+               0
+             );
+
+           setOnlinePaymentTotal(calculateTotal(onlinePayments));
+           setCodPaymentTotal(calculateTotal(codPayments));
+
+  
     } catch (error) {
-      console.log(error, "Error occured while getting the boking");
+      console.log(error, "Error occurred while getting the booking");
     }
   };
 
@@ -120,6 +158,10 @@ const AdminHomes = () => {
               <p className="text-gray-600">
                 <Pie data={booking} />
               </p>
+            </div>
+            <div className="bg-gray-100 p-4 rounded-lg mb-4">
+              <h4 className="text-lg font-semibold mb-2">Total Payments</h4>
+              <Bar data={getChartData()} />
             </div>
           </div>
         </div>

@@ -13,7 +13,7 @@ const Conversate = ({ data, currentUserId, online }) => {
       try {
         const { data } = await getUser(userId);
         setUserData(data.result);
-        // console.log(data.result, "9999999999");
+        console.log(data.result, "9999999999");
       } catch (error) {
         console.log(error,"Error occured in the Coversation page ");
       }

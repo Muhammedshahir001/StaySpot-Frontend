@@ -23,11 +23,7 @@ const ResortBooking = () => {
   const [checkInDate, setCheckInDate] = useState(null);
   const [checkOutDate, setCheckOutDate] = useState(null);
   const [paymentt, setPaymentt] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [address, setAddress] = useState("");
+
 
   const location = useLocation();
   const timeDifference = checkOutDate?.getTime() - checkInDate?.getTime();

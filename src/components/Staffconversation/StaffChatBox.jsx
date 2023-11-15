@@ -116,8 +116,8 @@ const StaffChatBox = ({
               <>
                 {message.senderId === currentStaff ? (
                   <div ref={scroll} className="msg justify-end flex mb-2">
-                    <div className="text-white p-3 rounded-lg">
-                      <span className="text-lg font-semibold">
+                    <div className="text-white p-3 rounded-lg bg-slate-400">
+                      <span className="text-lg font-semibold p-2 ">
                         {message.text}
                       </span>
                       <span className="text-sm">
@@ -131,7 +131,7 @@ const StaffChatBox = ({
                 ) : (
                   <div ref={scroll} className="msg justify-start flex mb-2">
                     <div className="msg-content bg-gray-200 p-3 rounded-lg">
-                      <span className="text-lg font-semibold">
+                      <span className="text-lg font-semibold m-2">
                         {message.text}
                       </span>
                       <span className="text-sm">

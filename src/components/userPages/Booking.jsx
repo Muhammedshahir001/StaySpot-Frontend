@@ -83,7 +83,7 @@ const Booking = () => {
             <div className=" flex justify-between">
               <div className="m-6   ">
                 <img
-                  src={getRandomImage(resort.resortId.image)}
+                  src={getRandomImage(resort.resortId?.image)}
                   alt="images_resort"
                   className="rounded-tl-[20px] w-96"
                 />
@@ -91,15 +91,15 @@ const Booking = () => {
 
               <div className=" mt-8">
                 <h2 className="card-title">
-                  Booked Resort: {resort.resortId.resortname}
+                  Booked Resort: {resort.resortId?.resortname}
                 </h2>
 
-                <p>Address: {resort.resortId.address}</p>
+                <p>Address: {resort.resortId?.address}</p>
                 <br />
                 
                 <p>Price: {resort.payment.payment_amount}</p>
                 <p>Selected Rooms: {resort.selected_rooms}</p>
-                <p>Place: {resort.resortId.place}</p>
+                <p>Place: {resort.resortId?.place}</p>
                 <p>Status: {resort.status}</p>
                 <p>
                   Booked Date:{" "}

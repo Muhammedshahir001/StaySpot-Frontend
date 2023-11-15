@@ -123,6 +123,7 @@ const Resort = () => {
       setFilteredResorts([]); // Clear previous search results
       return;
     }
+    
     if (selectedPlace && checkInDate && checkOutDate) {
       // Formatting the date into the correct format
       const new_checkin = checkInDate;
@@ -295,7 +296,7 @@ const Resort = () => {
               </div>
             ))
           ) : (
-            <div className="text-2xl mx-auto">
+            <div className="text-2xl mx-auto flex justify-center">
               <img
                 src="https://res.cloudinary.com/dqlhedl48/image/upload/v1694444884/g8uh7daaayflbm4zogpr.gif"
                 alt="images_resort"

@@ -70,7 +70,7 @@ function AllBookings() {
               {records.map((item, index) => (
                 <tr key={index}>
                   <td>{index + 1}</td>
-                  <td>{item.resortId.resortname}</td>
+                  <td>{item.resortId?.resortname}</td>
                   <td>{item.traveler?.name}</td>
                   <td>{item.status}</td>
                   <td>{item.fromDate}</td>

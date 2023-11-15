@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { getUser, getMessages, adMessage } from "../../api/userApi";
 import InputEmoji from "react-input-emoji";
 import { FiSend } from "react-icons/fi";
+import chatbg from "../../images/output-onlinegiftools.gif";
 
 const Chatbox = ({ chat, currentUser, setSendMessage, recievedMessage }) => {
   const [userData, setUserData] = useState(null);
@@ -21,7 +22,6 @@ const Chatbox = ({ chat, currentUser, setSendMessage, recievedMessage }) => {
   useEffect(() => {
     const userId = chat?.members?.find((id) => id !== currentUser);
 
-    
     const getUserData = async () => {
       const { data } = await getUser(userId);
       setUserData(data.result);
@@ -30,7 +30,6 @@ const Chatbox = ({ chat, currentUser, setSendMessage, recievedMessage }) => {
     if (chat !== null) getUserData();
   }, [chat, currentUser]);
   useEffect(() => {
-
     const fetchmessages = async () => {
       try {
         const { data } = await getMessages(chat._id);
@@ -38,7 +37,7 @@ const Chatbox = ({ chat, currentUser, setSendMessage, recievedMessage }) => {
         setMessages(data);
         // console.log(data, "This is the data of fetchmessages ");
       } catch (error) {
-        console.log(error,"Error occured in the chatBox");
+        console.log(error, "Error occured in the chatBox");
       }
     };
     if (chat !== null) fetchmessages();
@@ -97,7 +96,6 @@ const Chatbox = ({ chat, currentUser, setSendMessage, recievedMessage }) => {
     // Send message to socket server
   };
 
-
   return (
     <>
       {chat ? (
@@ -121,9 +119,10 @@ const Chatbox = ({ chat, currentUser, setSendMessage, recievedMessage }) => {
                 {message?.senderId === currentUser ? (
                   <div ref={scroll} className="msg justify-end flex mb-2">
                     <div className="text-white p-3 rounded-lg  bg-slate-600">
-                      <span className="text-lg font-semibold">
+                      <span className="text-lg font-semibold  m-2">
                         {message.text}
                       </span>
+
                       <span className="text-sm">
                         {message.createdAt &&
                           convertTimestampToFormattedDateTime(
@@ -135,7 +134,7 @@ const Chatbox = ({ chat, currentUser, setSendMessage, recievedMessage }) => {
                 ) : (
                   <div ref={scroll} className="msg justify-start flex mb-2">
                     <div className="msg-content bg-gray-200 p-3 rounded-lg">
-                      <span className="text-lg font-semibold  ">
+                      <span className="text-lg font-semibold m-2 ">
                         {message?.text}
                       </span>
                       <span className="text-sm   ">
@@ -166,7 +165,18 @@ const Chatbox = ({ chat, currentUser, setSendMessage, recievedMessage }) => {
         </div>
       ) : (
         <div className="flex justify-center items-center h-screen">
-          <span className="text-center">
+          <span
+            className="text-center"
+            style={{
+              backgroundImage:
+                "url('https://i.pinimg.com/originals/7c/1d/ab/7c1dab157f34e603487b5d0b057da448.gif')",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              width: "100%",
+              height: "100%",
+              borderRadius: "25px",
+            }}
+          >
             Tap on a chat to start conversation
           </span>
         </div>

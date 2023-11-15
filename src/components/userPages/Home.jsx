@@ -38,6 +38,8 @@ const Home = () => {
   };
 
   useEffect(() => {
+    console.log();
+    console.log();
     userdestination();
   }, []);
 
@@ -181,6 +183,7 @@ const Home = () => {
       });
 
       setFilteredResorts(filterResorts);
+      navigate('/resortList')
     }
   };
   const today = new Date();
@@ -188,7 +191,7 @@ const Home = () => {
 
   const imageSrc =
     "https://res.cloudinary.com/dqlhedl48/image/upload/v1694625468/cdsxzffo3o3gusc1hfmw.jpg";
-  console.log(users, "updated");
+ 
 
   const data = [
     {
@@ -301,21 +304,6 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className=" pr-4">
-        <div id="services" className="pt-20 grid grid-cols-4 gap-4">
-          {data.map((service, index) => {
-            return (
-              <div className="service flex flex-col bg-slate-100 gap-4 p-8 bg-aliceblue shadow-lg transition-transform transform translate-x-4 -translate-y-10 hover:translate-x-0 hover:-translate-y-4 hover:shadow-md">
-                <div className="icon">
-                  <img src={service.icon} alt="" className="h-10" />
-                </div>
-                <h3 className="text-xl font-bold">{service.title}</h3>
-                <p>{service.subTitle}</p>
-              </div>
-            );
-          })}
-        </div>
-      </div>
 
       <div className=" my-10 card border border-stone-400 rounded-2xl shadow-2xl bg-opacity-25 bg-green-500 mx-2">
         {filteredResorts.length > 0 ? (
@@ -373,14 +361,14 @@ const Home = () => {
             <div className="flex flex-wrap">
               {resort.map((item) => (
                 <div
-                  className="bg-white shadow-2xl p-4  w-full max-w-[352px]  mx-auto cursor-pointer hover:shadow-2xl transition hover:scale-105 border-sky-300 "
+                  className="bg-white shadow-2xl p-4  w-full max-w-[352px]  mx-auto cursor-pointer hover:shadow-2xl transition rounded-md hover:scale-105 border-sky-300 "
                   key={item.resortname}
                 >
                   <figure>
                     <img
                       src={`${item.image[0]}`}
                       alt="resort img"
-                      className="mb-1"
+                      className="mb-7 rounded-md  h-48 w-80 "
                     />
                   </figure>
                   <div className="flex flex-col">
@@ -420,11 +408,11 @@ const Home = () => {
           </h1>
           <div className="flex flex-wrap">
             {adventure.map((item) => (
-              <div className="bg-white shadow-2xl p-4  w-full max-w-[352px]  mx-auto cursor-pointer hover:shadow-2xl transition hover:scale-105 border-sky-300">
+              <div className="bg-white shadow-2xl p-4  rounded-md w-full max-w-[352px]  mx-auto cursor-pointer hover:shadow-2xl transition hover:scale-105 border-sky-300">
                 <figure>
                   <img
                     src={`${baseUrl}${item?.image[0]}`}
-                    className="mb-1"
+                    className="mb-7 rounded-md  h-48 w-80"
                     alt="Movie"
                   />
                 </figure>
@@ -438,9 +426,8 @@ const Home = () => {
                   </div>
 
                   <button
-                    className="btn btn-primary"
+                    className="btn btn-primary "
                     onClick={() => {
-                      console.log("advrihdb working...");
                       handleClick(item._id);
                     }}
                   >
@@ -455,13 +442,13 @@ const Home = () => {
           <h1 className="p-5 font-extrabold md:text-2xl text-center  underline-offset-8">
             Poppular Destinations....
           </h1>
-          <div className="flex flex-wrap">
+          <div className="flex flex-wrap ">
             {destination.map((item) => (
-              <div className="bg-white shadow-2xl p-4  w-full max-w-[352px]  mx-auto cursor-pointer hover:shadow-2xl transition hover:scale-105 border-sky-300">
+              <div className="bg-white shadow-2xl p-4  rounded-md w-full max-w-[352px]  mx-auto cursor-pointer hover:shadow-2xl transition hover:scale-105 border-sky-300">
                 <figure>
                   <img
                     src={`${baseUrl}${item?.dest_img[0]}`}
-                    className="mb-1"
+                    className="mb-7 rounded-md  h-48 w-80 "
                     alt="Movie"
                   />
                 </figure>
@@ -478,7 +465,7 @@ const Home = () => {
                   </div>
 
                   <button
-                    className="btn btn-primary"
+                    className="btn btn-primary mt-5"
                     onClick={() => {
                       handleSee(item._id);
                     }}
@@ -491,11 +478,27 @@ const Home = () => {
           </div>
         </div>
       </div>
+
+      <div className=" pr-4">
+        <div id="services" className="pt-20 grid grid-cols-4 gap-8">
+          {data.map((service, index) => {
+            return (
+              <div className="service flex flex-col bg-slate-100 gap-4 p-8 bg-aliceblue shadow-lg transition-transform transform translate-x-4 -translate-y-10 hover:translate-x-0 hover:-translate-y-4 hover:shadow-md">
+                <div className="icon">
+                  <img src={service.icon} alt="" className="h-10" />
+                </div>
+                <h3 className="text-xl font-bold">{service.title}</h3>
+                <p>{service.subTitle}</p>
+              </div>
+            );
+          })}
+        </div>
+      </div>
       <h1 className="p-5 font-extrabold md:text-2xl text-center  underline-offset-8">
         Our Customer's Gallery
       </h1>
       <div className="carousel carousel-center rounded-box">
-        <div className="carousel-item">
+        <div className="carousel-item ">
           <img
             src="https://res.cloudinary.com/dqlhedl48/image/upload/v1695718523/banner/hynsah7dn50mtwqi1wcs.webp"
             alt="img"

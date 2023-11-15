@@ -7,7 +7,7 @@ import ChangePassword from "./ChangePassword";
 
 const Profile = () => {
   const users = useSelector((state) => state.user);
-  console.log(users,"jiijijjj")
+  console.log(users, "jiijijjj");
   return (
     <div className="mx-auto max-w-screen-2xl">
       <Header />
@@ -24,7 +24,11 @@ const Profile = () => {
           <input type="text" value={users.name} className="input mb-4" />
 
           <h2 className="text-lg mt-4 mb-2 w-44">Phone:</h2>
-          <input type="text" value={users.phone} className="input mb-4" />
+          <input
+            type="text"
+            value={users.phone ? users.phone : "No phone number in your email"}
+            className="input mb-4"
+          />
 
           <h2 className="text-lg mt-4 mb-2">Email:</h2>
           <input type="email" value={users.email} className="input mb-4" />

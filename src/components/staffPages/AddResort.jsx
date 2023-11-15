@@ -22,13 +22,21 @@ const AddResort = () => {
     price: "",
     phone: "",
   });
- const handleSuccess = () => {
-   alert("Resort added successfully!");
-   navigate("/staff/staffResorts");
- };
+const handleSuccess = () => {
+  toast.success("Resort added successfully!", {
+    position: "top-center",
+    autoClose: 3000,
+  });
+};
+const redirectToResorts = () => {
+  navigate("/staff/staffResorts");
+};
+
 
  const handleError = (message) => {
-   alert(`An error occurred while adding the resort: ${message}`);
+   toast.error(`An error occurred while adding the resort: ${message}`, {
+     position: "top-center",
+   });
  };
 
   const handleSubmit = async (e) => {
@@ -85,6 +93,7 @@ const AddResort = () => {
         const response = await staffresort(formData);
         if (response.data.created) {
           handleSuccess();
+          setTimeout(redirectToResorts, 2000);
         } else {
           handleError("Unexpected response from the server.");
         }

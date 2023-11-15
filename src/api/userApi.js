@@ -106,6 +106,38 @@ const adMessage = (data) => {
     return userAxiosInstance.post('/addMsg', data)
 }
 
+const userGoogleRegister = (userData) => {
+    try {
+        console.log(userData,"userData......");
+        
+        return userAxiosInstance.post('/googleRegister', userData);
+        
+    } catch (error) {
+        console.log(error,"error in the google authication ");
+        
+    }
+};
+
+const userRegisterGoogle =(userData) =>{
+    try {
+        return userAxiosInstance.post("/RegisterWithGoole", userData)
+        
+    }catch(error){
+        console.log(error);
+    }
+}
+
+ const addReview = async (resortId, reviewData) => {
+    try {
+        const response = await userAxiosInstance.post(`/addReview/${resortId}`, reviewData);
+        return response.data; // Assuming the response contains relevant data
+    } catch (error) {
+        throw error;
+    }
+};
+const getReviews = (resortId) => {
+    return userAxiosInstance.get(`/reviews/${resortId}`);
+};
 
 
 
@@ -136,6 +168,10 @@ export {
     getMessages,
     adMessage,
     SendId,
+    userGoogleRegister,
+    userRegisterGoogle,
+    addReview,
+    getReviews
     
  
 

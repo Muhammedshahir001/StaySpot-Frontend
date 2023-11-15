@@ -14,7 +14,7 @@ import DestinationData from "../components/userPages/DestinationData";
 import Profile from "../components/userPages/Profile";
 import PrivateRoute from "../productRoute/PrivateRoute";
 import Booking from "../components/userPages/Booking";
-import ResortPaying  from "../components/userPages/ResortPaying"
+import ResortPaying from "../components/userPages/ResortPaying";
 import ResortBooking from "../components/userPages/ResortBooking";
 import ForgotPassword from "../components/userPages/ForgotPassword";
 import ResetPassword from "../components/userPages/ResetPassword";
@@ -38,7 +38,6 @@ const UserRoute = () => {
         <Route path="/ViewAdventure/:id" element={<AdventureData />} />
         <Route path="/destinations" element={<Destination />} />
         <Route path="/ViewDestination/:id" element={<DestinationData />} />
-        <Route path="/MyBookings" element={<Booking />} />
         <Route path="/viewBook" element={<ResortBooking />} />
         <Route path="/hotelbooking" element={<ResortPaying />} />
 
@@ -47,9 +46,9 @@ const UserRoute = () => {
 
         <Route element={<PrivateRoute role={"user"} route={"/login"} />}>
           <Route path="/profile" element={<Profile />} />
-          <Route path="/chat" element={<Chat/>} />
-      
-          
+          <Route path="/chat" element={<Chat />} />
+
+          <Route path="/MyBookings" element={<Booking />} />
         </Route>
       </Routes>
     </>
